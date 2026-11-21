@@ -1,0 +1,9 @@
+If ./mvnw reports 'permission denied', run:
+    chmod +x mvnw
+    ./mvnw test
+
+Or bypass the executable bit:
+    sh mvnw test
+
+Run these commands from inside the backend directory.
+The Maven project targets Java 17; verify with: javac -version

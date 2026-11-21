@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Shortly turns long URLs into short, shareable links.">
+  <title>Shortly — URL Shortener</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="Shortly home"><span class="brand-mark">S</span> Shortly</a>
+      <span class="nav-note">Simple links. Easy sharing.</span>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">A simpler way to share</p>
+      <h1>Long links,<br><span>meet Shortly.</span></h1>
+      <p class="intro">Turn a long URL into a short, shareable link in seconds.</p>
+
+      <form id="shorten-form" class="shorten-form">
+        <label for="long-url">Paste your long URL</label>
+        <div class="input-row">
+          <input id="long-url" name="longUrl" type="url" placeholder="https://example.com/your/very/long/link" autocomplete="url" required>
+          <button type="submit">Shorten URL <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="hint">Only HTTP and HTTPS links are supported.</p>
+      </form>
+
+      <div id="result" class="result" hidden aria-live="polite"></div>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer>
+      <span>Built with Spring Boot and PostgreSQL.</span>
+      <span>Shortly · Open-source project</span>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

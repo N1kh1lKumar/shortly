@@ -1,0 +1,59 @@
+const API_BASE_URL = window.SHORTLY_API_BASE_URL || "http://localhost:8080";
+const form = document.querySelector("#shorten-form");
+const input = document.querySelector("#long-url");
+const result = document.querySelector("#result");
+const message = document.querySelector("#message");
+const button = form.querySelector("button");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  result.hidden = true;
+  message.textContent = "";
+
+  let parsed;
+  try {
+    parsed = new URL(input.value.trim());
+  } catch {
+    message.textContent = "Enter a valid URL.";
+    return;
+  }
+
+  if (!["http:", "https:"].includes(parsed.protocol)) {
+    message.textContent = "Only HTTP and HTTPS URLs are supported.";
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Connecting…";
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/v1/url/shorten`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ longUrl: parsed.href })
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(data.message || "Unable to shorten this URL. Please try again.");
+    }
+
+    const shortUrl = data.shortUrl;
+    if (!shortUrl) throw new Error("The API response did not include a shortUrl.");
+
+    result.replaceChildren();
+    const title = document.createElement("strong");
+    title.textContent = "Your shortened URL";
+    const link = document.createElement("a");
+    link.href = shortUrl;
+    link.textContent = shortUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    result.append(title, link);
+    result.hidden = false;
+  } catch (error) {
+    message.textContent = error.message || "Could not connect to the backend. The API may not be implemented yet.";
+  } finally {
+    button.disabled = false;
+    button.innerHTML = 'Shorten URL <span aria-hidden="true">→</span>';
+  }
+});
