@@ -4,7 +4,7 @@ A simple and lightweight URL shortener built with **Java, Spring Boot, Spring Da
 
 Shortly converts long URLs into short, shareable links and redirects users to their original destinations.
 
-Live demo =  [@shortly](https://shortly-production-49404ba6.up.railway.app/)
+Live demo =  [shortly](https://shortly-production-49404ba6.up.railway.app/)
 
 ## Features
 
