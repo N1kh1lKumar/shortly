@@ -49,8 +49,3 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 24px
   button { min-height: 50px; }
   footer { flex-direction: column; text-align: center; }
 }
-
-.result { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.result strong { flex-basis: 100%; margin: 0; }
-.result a { min-width: 0; flex: 1; }
-.copy-button { min-height: 40px; padding: 0 16px; }

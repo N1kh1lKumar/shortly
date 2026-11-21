@@ -1,4 +1,4 @@
-const API_BASE_URL = window.location.origin;
+
 const form = document.querySelector("#shorten-form");
 const input = document.querySelector("#long-url");
 const result = document.querySelector("#result");
@@ -26,7 +26,7 @@ form.addEventListener("submit", async (event) => {
   button.disabled = true;
   button.textContent = "Connecting…";
   try {
-    const response = await fetch(`${API_BASE_URL}/api/v1/url/shorten`, {
+    const response = await fetch("/api/v1/url/shorten",  {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ longUrl: parsed.href })
