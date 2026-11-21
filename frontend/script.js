@@ -1,4 +1,4 @@
-const API_BASE_URL = window.SHORTLY_API_BASE_URL || "http://localhost:8080";
+const API_BASE_URL = window.location.origin;
 const form = document.querySelector("#shorten-form");
 const input = document.querySelector("#long-url");
 const result = document.querySelector("#result");
